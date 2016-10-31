@@ -11,7 +11,8 @@
       %person_relationships
         = render :partial => "events/individuals/person_relationship", :object => hbx_enrollment.family.primary_family_member.person.person_relationship_for(hbx_enrollment_member.person)
     %person_demographics
-      %ssn= hbx_enrollment_member.person.ssn
+      - if !hbx_enrollment_member.person.ssn.blank?
+        %ssn= hbx_enrollment_member.person.ssn
       %sex= "urn:openhbx:terms:v1:gender##{hbx_enrollment_member.person.gender}"
       %birth_date= simple_date_for(hbx_enrollment_member.person.dob)
       - if !hbx_enrollment_member.person.is_incarcerated.present?
